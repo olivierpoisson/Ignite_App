@@ -9,6 +9,8 @@ import xbox from "../img/xbox.svg";
 import nintendo from "../img/nintendo.svg";
 import apple from "../img/apple.svg";
 import gamepad from "../img/gamepad.svg";
+import starEmpty from "../img/star-empty.png";
+import starFull from "../img/star-full.png";
 
 const GameDetail = ({ pathId }) => {
     const { screenshots, game, isLoading } = useSelector(
@@ -40,6 +42,19 @@ const GameDetail = ({ pathId }) => {
         }
     };
 
+    const getStars = () => {
+        const stars = [];
+        const rating = Math.floor(game.rating);
+        for (let i = 1; i <= 5; i++) {
+            if (i <= rating) {
+                stars.push(<img alt="star" key={i} src={starFull}></img>);
+            } else {
+                stars.push(<img alt="star" key={i} src={starEmpty}></img>);
+            }
+        }
+        return stars;
+    };
+
     return (
         <>
             {!isLoading && (
@@ -49,6 +64,7 @@ const GameDetail = ({ pathId }) => {
                             <div className="rating">
                                 <h3>{game.name}</h3>
                                 <p>Rating: {game.rating}</p>
+                                {getStars()}
                             </div>
                             <Info>
                                 <h3>Platforms</h3>
@@ -126,6 +142,11 @@ const Stats = styled(motion.div)`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    img {
+        width: 2rem;
+        height: 2rem;
+        display: inline;
+    }
 `;
 
 const Info = styled(motion.div)`
