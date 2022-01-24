@@ -5,7 +5,7 @@ import Game from "../components/game";
 import GameDetail from "../components/gameDetail";
 
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
@@ -22,7 +22,11 @@ const Home = () => {
     const { popular, newGames, upcoming } = useSelector((state) => state.games);
     return (
         <GameList>
-            {pathId && <GameDetail />}
+            <LayoutGroup>
+                <AnimatePresence>
+                    {pathId && <GameDetail pathId={pathId} />}
+                </AnimatePresence>
+            </LayoutGroup>
             <h2>Upcoming Games</h2>
             <Games>
                 {upcoming.map((game) => (
