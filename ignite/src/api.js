@@ -32,6 +32,7 @@ const new_games = `games?key=71ac2d5b05014dbc8b00af741b6199f3&dates=${lastYear},
 export const popularGamesUrl = () => `${base_url}${popular_games}`;
 export const upcomingGamesUrl = () => `${base_url}${upcoming_games}`;
 export const newGamesUrl = () => `${base_url}${new_games}`;
-export const gameDetailsUrl = (gameId) => `${base_url}games/${gameId}`;
+export const gameDetailsUrl = (gameId) =>
+    `${base_url}games/${gameId}?key=71ac2d5b05014dbc8b00af741b6199f3`;
 export const gameScreenshotsUrl = (gameId) =>
-    `${base_url}games/${gameId}/screenshots`;
+    `${base_url}games/${gameId}/screenshots?key=71ac2d5b05014dbc8b00af741b6199f3`;

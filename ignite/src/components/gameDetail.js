@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 
 const GameDetail = () => {
-    const { screen, game } = useSelector((state) => state.detail);
+    const { screenshots, game } = useSelector((state) => state.detail);
     return (
         <CardShadow>
             <Detail>
@@ -30,10 +30,10 @@ const GameDetail = () => {
                     <p>{game.description_raw}</p>
                 </Description>
                 <div className="gallery">
-                    {screen.results.map((screen) => (
+                    {screenshots.results.map((screenshot) => (
                         <img
-                            src={screen.image}
-                            key={screen.id}
+                            src={screenshot.image}
+                            key={screenshot.id}
                             alt="game image"
                         />
                     ))}
@@ -104,7 +104,5 @@ const Media = styled(motion.div)`
 const Description = styled(motion.div)`
     padding: 5rem 0rem;
 `;
-
-const Gallery = styled(motion.div)``;
 
 export default GameDetail;
