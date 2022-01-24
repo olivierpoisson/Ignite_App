@@ -7,28 +7,28 @@ const GameDetail = () => {
     return (
         <CardShadow>
             <Detail>
-                <div className="stats">
+                <Stats>
                     <div className="rating">
                         <h3>{game.name}</h3>
                         <p>Rating: {game.rating}</p>
                     </div>
-                    <div className="info">
+                    <Info>
                         <h3>Platforms</h3>
-                        <div className="platforms">
+                        <Platforms>
                             {game.platforms.map((data) => (
                                 <h3 key={data.platform.id}>
                                     {data.platform.name}
                                 </h3>
                             ))}
-                        </div>
-                    </div>
-                </div>
-                <div className="media">
+                        </Platforms>
+                    </Info>
+                </Stats>
+                <Media>
                     <img src={game.background_image} alt="image" />
-                </div>
-                <div className="description">
+                </Media>
+                <Description>
                     <p>{game.description_raw}</p>
-                </div>
+                </Description>
                 <div className="gallery">
                     {screen.results.map((screen) => (
                         <img
@@ -51,15 +51,60 @@ const CardShadow = styled(motion.div)`
     position: fixed;
     top: 0;
     left: 0;
+    &::-webkit-scrollbar {
+        width: 0.5rem;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: #ff7676;
+    }
+    &::-webkit-scrollbar-track {
+        background-color: white;
+    }
 `;
 const Detail = styled(motion.div)`
     width: 80%;
     border-radius: 1rem;
-    padding: 2rem 20rem;
+    padding: 2rem 5rem;
     background-color: white;
     position: absolute;
     left: 10%;
     color: black;
+    img {
+        width: 100%;
+    }
 `;
+
+const Stats = styled(motion.div)`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`;
+
+const Info = styled(motion.div)`
+    text-align: center;
+`;
+
+const Platforms = styled(motion.div)`
+    display: flex;
+    justify-content: space-evenly;
+    img {
+        margin-left: 3rem;
+    }
+`;
+
+const Media = styled(motion.div)`
+    margin-top: 5rem;
+    img {
+        width: 100%;
+        height: 60vh;
+        object-fit: cover;
+    }
+`;
+
+const Description = styled(motion.div)`
+    padding: 5rem 0rem;
+`;
+
+const Gallery = styled(motion.div)``;
 
 export default GameDetail;
